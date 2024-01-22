@@ -3,13 +3,13 @@
 
 [[img/anotavi.png]]
 
-AnOtavi is an innovative application designed to enhance video learning and documentation experiences. It seamlessly integrates video playback with note-taking and chapter marking, offering a comprehensive tool for educators, students, and content creators. With AnOtavi, users can easily annotate videos, mark chapters, and generate detailed notes, making it an indispensable tool for video-based learning and analysis.
+AnOtavi is an innovative application designed to enhance video learning and documentation experiences. It seamlessly integrates video playback with note-taking and chapter marking, offering a comprehensive tool for educators, students, and content creators. With AnOtavi, users can easily annotate videos, mark chapters, and generate detailed notes, making it an indispensable tool for video-based learning and analysis. Check the links on headings and see the videos.
 
 * Features
 
-  - *[[Video Chapter Marking][img/chapters.mp4]]*: Easily mark and label chapters within videos for quick navigation and reference.
+  - *[[img/chapters.mp4][Video Chapter Marking]]*: Easily mark and label chapters within videos for quick navigation and reference.
   - *Note-Taking*: Synchronize your notes with specific video timestamps, enhancing learning and review efficiency.
-  - *Org Mode Integration*: Export notes to Org mode files for advanced organization and customization.
+  - *[[img/main_features.mp4][Org Mode Integration]]*: Export notes to Org mode files for advanced organization and customization.
   - *Custom Timestamps*: Convert playback times into user-friendly chapter metadata.
 
 * Installation
@@ -44,7 +44,7 @@ AnOtavi is an innovative application designed to enhance video learning and docu
 
 * Integrations
 
-  - *Freeplane*: Use the .nodes files for mind mapping and organizing video chapters.
+  - *[[img/freeplane.mp4][Freeplane]]*: Use the .nodes files for mind mapping and organizing video chapters.
   - *Org Mode*: Utilize Org files for a text-based, hierarchical organization of notes.
 
 * Subtitles
