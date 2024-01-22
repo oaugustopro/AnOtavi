@@ -7,7 +7,7 @@ AnOtavi is an innovative application designed to enhance video learning and docu
 
 * Features
 
-  - *Video Chapter Marking*: Easily mark and label chapters within videos for quick navigation and reference.
+  - *[[Video Chapter Marking][img/chapters.mp4]]*: Easily mark and label chapters within videos for quick navigation and reference.
   - *Note-Taking*: Synchronize your notes with specific video timestamps, enhancing learning and review efficiency.
   - *Org Mode Integration*: Export notes to Org mode files for advanced organization and customization.
   - *Custom Timestamps*: Convert playback times into user-friendly chapter metadata.
@@ -28,7 +28,7 @@ AnOtavi is an innovative application designed to enhance video learning and docu
   Install these dependencies using your system's package manager.
 
 * Usage
-
+[[img/using_anotavi.gif]]
   1. *Starting the Application*: ./anotavi.sh [video file path], or just execute it without arguments.
   2. *Marking Chapters and Taking Notes*: Use the interactive script commands to mark chapters and take notes, using 'c' key.
   3. There is a live and audio sections that wasn't made yet.
