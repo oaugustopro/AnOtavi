@@ -1,9 +1,9 @@
 
-# KKVideoNote version 1.0
+# AnOtavi version 0.8
 
-[[/path/to/banner/image]]  ; Replace with the actual path of the banner image
+[[img/anotavi.png]]
 
-KKVideoNote is an innovative application designed to enhance video learning and documentation experiences. It seamlessly integrates video playback with note-taking and chapter marking, offering a comprehensive tool for educators, students, and content creators. With KKVideoNote, users can easily annotate videos, mark chapters, and generate detailed notes, making it an indispensable tool for video-based learning and analysis.
+AnOtavi is an innovative application designed to enhance video learning and documentation experiences. It seamlessly integrates video playback with note-taking and chapter marking, offering a comprehensive tool for educators, students, and content creators. With AnOtavi, users can easily annotate videos, mark chapters, and generate detailed notes, making it an indispensable tool for video-based learning and analysis.
 
 * Features
 
@@ -14,15 +14,11 @@ KKVideoNote is an innovative application designed to enhance video learning and 
 
 * Installation
 
-  To install KKVideoNote, follow these steps:
-
-  1. Clone the repository: git clone [repository URL].
-  2. Navigate to the cloned directory: cd KKVideoNote.
-  3. Run the installation script (if applicable): ./install.sh.
+  There is no need to install, just install dependencies and run the script.
 
 * Dependencies
 
-  KKVideoNote requires the following software:
+  AnOtavi requires the following software:
 
   - **MPV**: For video playback.
   - **Socat**: For inter-process communication.
@@ -33,17 +29,18 @@ KKVideoNote is an innovative application designed to enhance video learning and 
 
 * Usage
 
-  1. **Starting the Application**: ./KKVideoNote.sh [video file path].
-  2. **Marking Chapters and Taking Notes**: Use the interactive script commands to mark chapters and take notes.
-  3. **Exporting Notes**: Export notes to Org mode or Freeplane for advanced usage.
+  1. **Starting the Application**: ./anotavi.sh [video file path], or just execute it without arguments.
+  2. **Marking Chapters and Taking Notes**: Use the interactive script commands to mark chapters and take notes, using 'c' key.
+  3. There is a live and audio sections that wasn't made yet.
 
 * File Generation
 
-  KKVideoNote generates the following files:
+  AnOtavi generates the following files:
 
-  - **Org Mode Files**: For organizing notes and chapters.
-  - **Freeplane Files**: For mind mapping and structured documentation.
-  - **Metadata-enhanced Video Files**: Videos with embedded chapter information.
+  - **Org Mode Files**: For organizing notes and chapters, .node file.
+  - **Freeplane Files**: For mind mapping and structured documentation, paste .node file in freeplane and use another script (not included) to transform the nodes in links.
+  - **Metadata-enhanced Video Files**: Videos with embedded chapter information, .metadata file.
+  - **Subtitle file**: subtitle in srt format.
 
 * Integrations
 
@@ -52,7 +49,7 @@ KKVideoNote is an innovative application designed to enhance video learning and 
 
 * Subtitles
 
-  KKVideoNote supports integrating subtitles into videos, enhancing accessibility and learning.
+  AnOtavi supports integrating subtitles into videos, enhancing accessibility and learning.
 
 * Updating Videos
 
