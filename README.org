@@ -35,8 +35,6 @@ AnOtavi is an innovative application designed to enhance video learning and docu
 
 * File Generation
 [[img/main_features.gif]]
-[[img/chapters.gif]]
-
   AnOtavi generates the following files:
 
   - *Org Mode Files*: For organizing notes and chapters, .node file.
