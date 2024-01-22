@@ -44,12 +44,12 @@ convert_timestamp() {
 make_org_file() {
     local input_content="$1"
     local mpv_file="$2"
-    local line heading paragraph timestamp converted_timestamp
+    local line heading paragraph timestamp converted_timestamps
     declare -A chapters
 
     while IFS='|' read -r timestamp heading paragraph; do
-        converted_timestamp=$(convert_timestamp "$timestamp")
-        mpv_link="[[shell:mpv --geometry=800x600+300+300 --no-terminal --start=${converted_timestamp} ${mpv_file}][$timestamp]]"
+        converted_timestamps=$(convert_timestamp "$timestamp")
+        mpv_link="[[shell:mpv --geometry=800x600+300+300 --no-terminal --start=${converted_timestamps} ${mpv_file}][$timestamp]]"
 
         # Process the heading
         if [ -n "$heading" ]; then
@@ -93,9 +93,9 @@ handle_media_type() {
             echo '[STREAM]
 title='$fileBaseName'' >> "$baseDir"/"${fileBaseName}".metadata
             # Pos processing
-            ffmpeg -i "$file" -i "$dirName/$fileBaseName.metadata" -map_metadata 1 -codec copy "new.$dirName/$fileName" || exitError "Não passou o ffmpeg"
+            ffmpeg -i "$file" -i "$dirName/$fileBaseName.metadata" -map_metadata 1 -codec copy "$dirName/new.$fileName" || { echo "Não passou o ffmpeg"; exit 1; }
             # Example Usage
-            input_data=$(cat "$dirName/$fileBaseName.node")
+            input_data=$(cat "$dirName/$fileBaseName.nodes")
             mpv_file="$file"
             # Call the processing function
             make_org_file "$input_data" "$mpv_file" > "$dirName/$fileBaseName.org"
@@ -121,7 +121,7 @@ loop_text_prompt(){
       case "$keypressed" in
       $'\e')
           send_command "pause" "true"
-          read -p "PAUSA ${pidMidia}, digite qq tecla para voltar: "
+          read -p "PAUSA ${pidMidia}, digite ENTER para voltar: "
           send_command "pause" "false"
           ;;
       '=')
@@ -133,9 +133,12 @@ loop_text_prompt(){
           diffTimer=$( bc -l <<< "$endTimer - $agora" )
           tempoInicio=$(bc -l <<< "scale=00;($agora)")
           tempoFim=$(bc -l <<< "scale=00;($diffTimer+$tempoInicio)")
-          horaInicio=$(bc -l <<< "scale=00;$tempoInicio/1000/60/60")
-          minutoInicio=$(bc -l <<< "scale=00;($tempoInicio/1000)%3600/60")
-          segundoInicio=$(bc -l <<< "scale=00;($tempoInicio/1000)%3600%60")
+          horaInicio=$(bc -l <<< "scale=00;$tempoInicio/60/60")
+          minutoInicio=$(bc -l <<< "scale=00;($tempoInicio)%3600/60")
+          segundoInicio=$(bc -l <<< "scale=00;($tempoInicio)%3600%60")
+          echo ''$counter'
+'$horaInicio':'$minutoInicio':'$segundoInicio',000 --> '$horaFim':'$minutoFim':'$segundoFim',000
+'`echo "$linha" | sed -E 's/(.{30})/\1\n/g' `
           echo '[CHAPTER]
 TIMEBASE=1/1000
 START='$(( $(printf "%.0f" $(echo "$tempoInicio * 1000" | bc) 2> /dev/null) ))'
@@ -162,7 +165,7 @@ title='$capitulo'' >> "$baseDir"/${fileBaseName}.metadata
 '`echo "FOTO $linha" | sed -E 's/(.{30})/\1\n/g' `'
 
 ' >> $baseDir/"$fileBaseName".srt
-          echo "$horaInicio:$minutoInicio:$segundoInicio|$capitulo|{{foto}{$fileBaseName-$horaInicio_$minutoInicio_$segundoInicio}}$linha" >> "$baseDir"/"$fileBaseName".nodes
+          echo "$horaInicio:$minutoInicio:$segundoInicio|$capitulo|[[$linha][file:$dirBase/$fileBaseName-$horaInicio:$minutoInicio:$segundoInicio]]" >> "$baseDir"/"$fileBaseName".nodes
           ffmpeg -f video4linux2 -s "1280x960" -i /dev/video0 -ss 0:0:2 -y -hide_banner -loglevel quiet -frames 1 "$baseDir"/"$fileBaseName-$horaInicio_$minutoInicio_$segundoInicio".jpg
           ;;
       $'\0A')
@@ -315,10 +318,13 @@ artist='$USER'' > "$baseDir"/${fileBaseName}.metadata
     echo -n '' > "$baseDir"/${fileBaseName}.srt
 }
 
-# Function to get current playback time
+# Function to get current playback time in seconds (as an integer)
 get_playback_time() {
-    echo '{"command": ["get_property", "time-pos"]}' | socat - "$SOCKET" | jq -r '.data'
+    local playback_time=$(echo '{"command": ["get_property", "time-pos"]}' | socat - "$SOCKET" | jq -r '.data')
+    # Convert to integer (truncate the decimal part)
+    echo ${playback_time%.*}
 }
+
 
 # Function to handle screenshot
 take_screenshot() {
