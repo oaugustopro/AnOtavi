@@ -51,7 +51,3 @@ AnOtavi is an innovative application designed to enhance video learning and docu
 * Subtitles
 
   AnOtavi supports integrating subtitles into videos, enhancing accessibility and learning.
-
-* Updating Videos
-
-  Replace old video files with new ones containing embedded metadata for an enhanced viewing experience.
